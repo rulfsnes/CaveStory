@@ -3,13 +3,9 @@
 *
 */
 
-#include "graphics.h"
+#include "game.h"
 
 int main(int argc, char* argv[]) {
-	Graphics graphics;
-	while (true)
-	{
-
-	}
+	Game game;
 	return 0;
 }
