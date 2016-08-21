@@ -1,7 +1,15 @@
-#include <SDL.h>
-#include <stdio.h>
-#include <iostream>
+/*	Main.cpp
+*	the entry point for the program
+*
+*/
+
+#include "graphics.h"
+
 int main(int argc, char* argv[]) {
-	printf("Hi\n");
+	Graphics graphics;
+	while (true)
+	{
+
+	}
 	return 0;
 }

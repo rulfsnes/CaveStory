@@ -1,5 +1,7 @@
-#pragma once
+#ifndef GRAPHICS_H
+#define GRAPHICS_H
 
+ 
 /*
 
 */
@@ -16,3 +18,6 @@ private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 };
+
+
+#endif // !GRAPHICS_H
