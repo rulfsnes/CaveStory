@@ -22,8 +22,14 @@ Game::~Game(){
 
 void Game::gameLoop(){
 	Graphics graphics;
-	SDL_Event event;
 	Input input;
+	SDL_Event event;
+	float posX = 100;
+	float posY = 100;
+	std::string filepath = "content\\sprites\\MyChar.png";
+	this->_player = Sprite(graphics, filepath, 0, 0, 16, 16, posX, posY);
+
+	
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 	// Start the game loop
 	while (true)
@@ -54,11 +60,16 @@ void Game::gameLoop(){
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
 		this->update(std::min(ELAPSED_TIME_MS,MAX_FRAME_TIME));
 		LAST_UPDATE_TIME = CURRENT_TIME_MS;
+
+		this->draw(graphics);
 	}
 }
 
 void Game::draw(Graphics &graphics){
+	graphics.clear();
+	this->_player.draw(graphics, 100, 100);
 
+	graphics.flip();
 }
 
 void Game::update(float elapsedtime) {
