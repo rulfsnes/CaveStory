@@ -5,14 +5,14 @@ Sprite::Sprite()
 {
 }
 
-Sprite::Sprite(Graphics& graphics, std::string& filepath, int sourceX, int sourceY, int widht, int height, float posX, float posY)
+Sprite::Sprite(Graphics& graphics, std::string &filepath, int sourceX, int sourceY, int width, int height, float posX, float posY)
 {
 	this->_x = posX;
 	this->_y = posY;
 	this->_sourceRect.x = sourceX;
 	this->_sourceRect.y = sourceY;
 	this->_sourceRect.h = height;
-	this->_sourceRect.w = widht;
+	this->_sourceRect.w = width;
 
 	this->_spriteSheet = SDL_CreateTextureFromSurface(graphics.getRenderer(), graphics.loadImage(filepath));
 	if (this->_spriteSheet == NULL)
