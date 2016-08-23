@@ -24,11 +24,9 @@ void Game::gameLoop(){
 	Graphics graphics;
 	Input input;
 	SDL_Event event;
-	float posX = 100;
-	float posY = 100;
-	std::string filepath = "content\\sprites\\MyChar.png";
-	this->_player = Sprite(graphics, filepath, 0, 0, 16, 16, posX, posY);
-
+	this->_player = AnimatedSprite(graphics, "content\\sprites\\MyChar.png", 0, 0, 16, 16, 100.0f, 100.0f, 100.0f);
+	this->_player.setupAnimations();
+	this->_player.playAnimation("RunRight");
 	
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 	// Start the game loop
@@ -73,6 +71,5 @@ void Game::draw(Graphics &graphics){
 }
 
 void Game::update(float elapsedtime) {
-
-
+	this->_player.update(elapsedtime);
 }

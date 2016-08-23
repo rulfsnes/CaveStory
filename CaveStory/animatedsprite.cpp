@@ -36,6 +36,7 @@ void AnimatedSprite::update(int elapsedTime) {
 	this->_timeElapsed += elapsedTime;
 	if (this->_timeElapsed > this->_timeToUpdate) 
 	{
+		this->_timeElapsed -= this->_timeToUpdate;
 		if (this->_frameIndex < this->_animations[this->_currentAnimation].size() - 1)
 		{
 			this->_frameIndex++;
@@ -69,7 +70,8 @@ void AnimatedSprite::draw(Graphics & graphics, int x, int y)
 
 void AnimatedSprite::setupAnimations()
 {
-
+	this->addAnimation(3, 0, 0, "RunLeft", 16, 16, Vector2(0, 0));
+	this->addAnimation(3, 0, 16, "RunRight", 16, 16, Vector2(0, 0));
 }
 
 void AnimatedSprite::addAnimation(int frames, int x, int y, std::string name, int width, int height, Vector2 offset)

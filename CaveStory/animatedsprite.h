@@ -46,15 +46,13 @@ protected:
 
 	void setVisible(bool visible);
 
-	SDL_Rect _sourceRect;
-
 	virtual void animationDone(std::string currentAnimation);
 private:
 	std::map<std::string, std::vector<SDL_Rect> > _animations;
 	std::map<std::string, Vector2 > _offsets;
 
 	int _frameIndex;
-	double _timeElapsed;
+	double _timeElapsed = 0;
 	bool _visible;
 };
 
