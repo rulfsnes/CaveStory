@@ -11,14 +11,15 @@ AnimatedSprite::~AnimatedSprite()
 {
 }
 
-AnimatedSprite::AnimatedSprite(Graphics& graphics, const std::string &filePath, int sourceX, int sourceY, int width, int height, float posX, float posY, float timeToUpdate) {
-	Sprite(graphics, filePath, sourceX, sourceY, width, height, posX, posY);
-	_frameIndex = 0;
-	_timeToUpdate = timeToUpdate;
-	_visible = true;
-	_currentAnimationOnce = false;
-	_currentAnimation = "";
-}
+AnimatedSprite::AnimatedSprite(Graphics &graphics, const std::string &filePath, int sourceX, int sourceY,
+	int width, int height, float posX, float posY, float timeToUpdate) :
+	Sprite(graphics, filePath, sourceX, sourceY, width, height, posX, posY),
+	_frameIndex(0),
+	_timeToUpdate(timeToUpdate),
+	_visible(true),
+	_currentAnimationOnce(false),
+	_currentAnimation("")
+{}
 
 
 void AnimatedSprite::playAnimation(std::string animation, bool once) {
@@ -49,6 +50,26 @@ void AnimatedSprite::update(int elapsedTime) {
 			this->animationDone(this->_currentAnimation);
 		}
 	}
+}
+
+void AnimatedSprite::draw(Graphics & graphics, int x, int y)
+{
+	if (this->_visible)
+	{
+		SDL_Rect destinationRectangle;
+		destinationRectangle.x = x + this->_offsets[this->_currentAnimation].x;
+		destinationRectangle.y = y + this->_offsets[this->_currentAnimation].y;
+		destinationRectangle.w = this->_sourceRect.w * globals::SPRITE_SCALE;
+		destinationRectangle.h = this->_sourceRect.h * globals::SPRITE_SCALE;
+
+		SDL_Rect sourceRect = this->_animations[this->_currentAnimation][this->_frameIndex];
+		graphics.blitSurface(this->_spriteSheet, &sourceRect, &destinationRectangle);
+	}
+}
+
+void AnimatedSprite::setupAnimations()
+{
+
 }
 
 void AnimatedSprite::addAnimation(int frames, int x, int y, std::string name, int width, int height, Vector2 offset)
@@ -82,4 +103,5 @@ void AnimatedSprite::setVisible(bool visible)
 
 void AnimatedSprite::animationDone(std::string currentAnimation)
 {
+
 }

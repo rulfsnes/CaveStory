@@ -12,7 +12,8 @@ class AnimatedSprite :
 {
 public:
 	AnimatedSprite();
-	AnimatedSprite(Graphics &graphics, const std::string &filePath, int sourceX, int sourceY, int width, int height, float posX, float posY, float timeToUpdate);
+	AnimatedSprite(Graphics &graphics, const std::string &filePath, int sourceX, int sourceY, int width, int height,
+		float posX, float posY, float timeToUpdate);
 	~AnimatedSprite();
 	/*	void playAnimation
 	*	Plays the animation provided if it's not already playing 
@@ -44,6 +45,8 @@ protected:
 	void stopAnimation();
 
 	void setVisible(bool visible);
+
+	SDL_Rect _sourceRect;
 
 	virtual void animationDone(std::string currentAnimation);
 private:
